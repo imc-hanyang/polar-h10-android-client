@@ -147,7 +147,7 @@ class PolarH10Collector(
     )
 
     override fun newIntentForSetup(): Intent? {
-        val list = listOf("123ABC45", "543CBA21")
+        val list = listOf("4373B624", "43732225", "4EBE4924", "75052E29", "5AF6E02C")
         val dataAdapter = ArrayAdapter<String>(
             context,
             android.R.layout.simple_spinner_item,
