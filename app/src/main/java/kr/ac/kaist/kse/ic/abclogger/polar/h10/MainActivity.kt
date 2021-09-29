@@ -1,6 +1,7 @@
 package kr.ac.kaist.kse.ic.abclogger.polar.h10
 
 import android.content.pm.PackageManager
+import android.os.AsyncTask
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,27 +18,27 @@ class MainActivity : AppCompatActivity() {
 
         polarH10 = PolarH10Collector(
                 context = this,
-                onConnecting = { tvLog.append("[${nowTs()}] Connecting...\n") },
-                onConnect = { tvLog.append("[${nowTs()}] Connected\n") },
-                onDisconnect = { tvLog.append("[${nowTs()}] Disconnected\n") },
-                onEcgReady = { tvLog.append("[${nowTs()}] ECG ready\n") }
+                onConnecting = { runOnUiThread { tvLog.text = "${tvLog.text}\n[${nowTs()}] Connecting..." } },
+                onConnect = { runOnUiThread { tvLog.text = "${tvLog.text}\n[${nowTs()}] ECG connected" } },
+                onDisconnect = { runOnUiThread { tvLog.text = "${tvLog.text}\n[${nowTs()}] ECG disconnected..." } },
+                onEcgReady = { runOnUiThread { tvLog.text = "${tvLog.text}\n[${nowTs()}] ECG is now collecting data" } }
         )
 
         buttonStart.setOnClickListener {
-            tvLog.append("[${nowTs()}] Starting...\n")
+            tvLog.text = "${tvLog.text}\n[${nowTs()}] Starting..."
             polarH10.start()
         }
         buttonStop.setOnClickListener {
-            tvLog.append("[${nowTs()}] Stopping...\n")
+            tvLog.text = "${tvLog.text}\n[${nowTs()}] Stopping..."
             polarH10.stop()
         }
         buttonExport.setOnClickListener {
-            tvLog.append("[${nowTs()}] Exporting...\n")
+            tvLog.text = "${tvLog.text}\n[${nowTs()}] Exporting..."
             MySQLiteLogger.exportSQLite(
                     this,
                     "010-9968-8196"
             )
-            tvLog.append("[${nowTs()}] Data exported\n")
+            tvLog.text = "${tvLog.text}\n[${nowTs()}] Data exported"
         }
 
         if (!polarH10.getRequiredPermissions().all { checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED })
