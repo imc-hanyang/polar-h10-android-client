@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".MainActivity"
+	tools:ignore="HardcodedText">
+
+	<ScrollView
+		android:id="@+id/svLog"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="8dp"
+		android:layout_above="@id/llControlButtons">
+
+		<TextView
+			android:textSize="18sp"
+			android:textColor="@android:color/black"
+			android:textColorHint="@android:color/black"
+			android:id="@+id/tvLog"
+			android:layout_width="match_parent"
+			android:hint="LOG"
+			android:layout_height="wrap_content"/>
+	</ScrollView>
+
+	<LinearLayout
+		android:layout_alignParentBottom="true"
+		android:id="@+id/llControlButtons"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<Button
+			android:id="@+id/buttonStart"
+			android:layout_height="wrap_content"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_margin="4dp"
+			android:background="@drawable/button_bg"
+			android:textColor="@android:color/white"
+			android:textSize="16sp"
+			android:text="Start"
+			style="?android:attr/buttonBarButtonStyle"/>
+
+		<Button
+			android:id="@+id/buttonStop"
+			android:layout_height="wrap_content"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_margin="4dp"
+			android:background="@drawable/button_bg"
+			android:textColor="@android:color/white"
+			android:textSize="16sp"
+			style="?android:attr/buttonBarButtonStyle"
+			android:text="Stop"/>
+
+		<Button
+			android:id="@+id/buttonExport"
+			android:layout_height="wrap_content"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_margin="4dp"
+			android:background="@drawable/button_bg"
+			android:textColor="@android:color/white"
+			android:textSize="16sp"
+			style="?android:attr/buttonBarButtonStyle"
+			android:text="Export"/>
+
+	</LinearLayout>
+</RelativeLayout>
