@@ -16,19 +16,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         polarH10 = PolarH10Collector(
-            context = this,
-            onConnecting = { tvLog.append("[${nowTs()}] Connecting...\n") },
-            onConnect = { tvLog.append("[${nowTs()}] Connected\n") },
-            onDisconnect = { tvLog.append("[${nowTs()}] Disconnected\n") },
-            onEcgReady = { tvLog.append("[${nowTs()}] ECG ready\n") }
+                context = this,
+                onConnecting = { tvLog.append("[${nowTs()}] Connecting...\n") },
+                onConnect = { tvLog.append("[${nowTs()}] Connected\n") },
+                onDisconnect = { tvLog.append("[${nowTs()}] Disconnected\n") },
+                onEcgReady = { tvLog.append("[${nowTs()}] ECG ready\n") }
         )
 
-        buttonStart.setOnClickListener { polarH10.start() }
-        buttonStop.setOnClickListener { polarH10.stop() }
+        buttonStart.setOnClickListener {
+            tvLog.append("[${nowTs()}] Starting...\n")
+            polarH10.start()
+        }
+        buttonStop.setOnClickListener {
+            tvLog.append("[${nowTs()}] Stopping...\n")
+            polarH10.stop()
+        }
         buttonExport.setOnClickListener {
+            tvLog.append("[${nowTs()}] Exporting...\n")
             MySQLiteLogger.exportSQLite(
-                this,
-                "010-9968-8196"
+                    this,
+                    "010-9968-8196"
             )
             tvLog.append("[${nowTs()}] Data exported\n")
         }
